@@ -1,0 +1,7 @@
+{{ $cognitoParam := .Param "cognito" }}
+{{ $region := (printf "AWS.config.region = '%s';" $cognitoParam.region) }}
+{{ $credentials := (printf "AWS.config.credentials = new AWS.CognitoIdentityCredentials({ IdentityPoolId: AWS.config.region + ':%s' });" $cognitoParam.identitypoolid) }}
+{{ $script := (print $region $credentials) }}
+{{ $targetPath := (printf "assets/js/member/login-vars.%s.js" (md5 $script)) }}
+{{ $vars := $script | resources.FromString $targetPath }}
+<script type="text/javascript" src="{{ $vars.Permalink }}"></script>

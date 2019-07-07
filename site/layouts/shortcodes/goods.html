@@ -1,0 +1,13 @@
+{{ $goodsYaml := delimit (split (.Get 0) "-") "/" | printf "data/goods/%s.yaml" }}
+{{ $partialFile := .Get 1 | default "default" | printf "goods/%s" }}
+
+{{ $partialFile }}
+
+{{ if fileExists $goodsYaml }}
+    {{ $goodsPath := split (.Get 0) "-" }}
+    {{ $goods := index (index (index $.Site.Data.goods (index $goodsPath 0)) (index $goodsPath 1)) (index $goodsPath 2) }}
+    {{ partial $partialFile $goods }}
+{{ else }}
+    {{ $goods := index $.Site.Data.goods (.Get 0) }}
+    {{ partial $partialFile $goods }}
+{{ end }}

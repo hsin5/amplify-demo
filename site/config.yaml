@@ -1,0 +1,31 @@
+baseURL: /
+languageCode: ja-JP
+languageLang: ja
+title: Hugo Demo
+# theme: ananke
+# theme: hugo-lamp
+# envelopment: development
+
+disableKinds:
+    - RSS
+    - taxonomy
+    - taxonomyTerm
+
+menu:
+  main:
+  - identifier: about
+    name: about hugo
+    pre: <i class='fa fa-heart'></i>
+    url: /about/
+    weight: -110
+  - name: Member
+    pre: <i class='fa fa-road'></i>
+    url: /member/
+    weight: -100
+
+params:
+    cognito:
+        region: ap-northeast-1
+        identitypoolid: e36080ba-96fe-4557-a2a8-6e3df08cd028
+        poolid: ap-northeast-1_ZcQC9Pat4
+        clientid: 6bhbbq8g4k3h75c8tep1utk0bn
